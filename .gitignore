@@ -39,3 +39,6 @@
 
 # debug information files
 *.dwo
+
+# arduino secrets file
+arduino_secrets.h

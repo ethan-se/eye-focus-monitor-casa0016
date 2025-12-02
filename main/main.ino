@@ -1,26 +1,26 @@
 #include <Adafruit_NeoPixel.h>
 
 //neopixel setup
-#define PIN 2
+#define PIN 5
 #define NUMPIXELS 8
 #define DELAYVAL 500
 int tol = 20; //defines window of tolerance for how far/close someone is to the screen
 
 byte colours[][3] = { //array of colour options, corresponding to each screen size option
-  {50, 50, 0},      //index 0, yellow
-  {75, 25, 0},       //index 1, orange
-  {0, 50, 50},      //index 2, cyan
-  {0, 0, 100},        //index 3, blue
-  {50, 0, 50},      //index 4, magenta
-  {33, 33, 33}     //index 5, white
+  {2, 2, 0},      //index 0, yellow
+  {3, 1, 0},       //index 1, orange
+  {0, 2, 2},      //index 2, cyan
+  {0, 0, 4},        //index 3, blue
+  {2, 0, 2},      //index 4, magenta
+  {1, 1, 1}     //index 5, white
 };
 
 //rangefinder setup
-#define trigPin 0
-#define echoPin 1
+#define trigPin 3
+#define echoPin 4
 
 //POTENTIOMETER SETUP
-int potPin = A0;
+int potPin = A1;
 int potVal = 0;
 //screen size select setup
 int screenOptions[] = {14, 17, 21, 24, 27, 30}; //define supported sizes
@@ -29,7 +29,7 @@ int currentScreenIndex = 0; //initialise screen selection option tracker
 int lastPotVal = 0; //monitor last position of slider
 
 //smoothing variables for rolling average - preventing neopixel flashing
-const int numReadings = 30; //defines size of array
+const int numReadings = 20; //defines size of array
 int readings[numReadings]; //array to hold recent readings
 int readIndex = 0; //tracks position in array
 long total = 0; //current running total
@@ -107,7 +107,7 @@ void loop() {
   //LIGHT UP LEDS
   for (int i=0; i<pixelsLit; i++) {
     if (i == 3 || i == 4) { //make middle LEDs green, telling user they are sat at the optimal distance
-      pixels.setPixelColor(i, 0, 100, 0);
+      pixels.setPixelColor(i, 0, 2, 0);
     }
     else {                  //set colours to values that match the selected screen size
       pixels.setPixelColor(i, r, g, b);
